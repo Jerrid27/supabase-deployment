@@ -1,0 +1,22 @@
+name: Deploy to Supabase
+
+on:
+  push:
+    branches:
+      - main  # Runs the workflow when you push to the main branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Supabase CLI
+        run: curl -fsSL https://deb.supabase.com/install.sh | sh
+
+      - name: Link Supabase project
+        run: supabase link --project-ref kijcmzugsshiqfdazgsj
+
+      - name: Deploy database changes
+        run: supabase db push
