@@ -1,3 +1,4 @@
+HEAD
 name: Deploy to Supabase
 
 on:
@@ -20,3 +21,30 @@ jobs:
 
       - name: Deploy database changes
         run: supabase db push
+=======
+name: Deploy Supabase Functions
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Supabase CLI
+        run: |
+          curl -fsSL https://get.supabase.com/install | sh
+          echo "$HOME/.supabase/bin" >> $GITHUB_PATH
+
+      - name: Deploy Supabase Edge Functions
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+        run: |
+          supabase link --project-ref kijcmzugsshiqfdazgsj
+          supabase functions deploy fetch-appointments
+>>>>>>> 9caa860 (Fix missing GitHub Actions workflow)
