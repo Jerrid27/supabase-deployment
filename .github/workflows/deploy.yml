@@ -21,7 +21,7 @@ jobs:
 
       - name: Deploy database changes
         run: supabase db push
-=======
+
 name: Deploy Supabase Functions
 
 on:
@@ -47,4 +47,4 @@ jobs:
         run: |
           supabase link --project-ref kijcmzugsshiqfdazgsj
           supabase functions deploy fetch-appointments
->>>>>>> 9caa860 (Fix missing GitHub Actions workflow)
+ 9caa860 (Fix missing GitHub Actions workflow)
